@@ -1,9 +1,10 @@
 #include<bits/stdc++.h>
-ios_base::sync_with_stdio(0);
 using namespace std;
 
 typedef vector<int> vi;
-typedef vector<pair<int, int>> vii;
+typedef vector<vector<int> > vvi;
+typedef pair<int, int> pii;
+typedef vector<pii> vii;
 typedef map<int, int> mii;
 #define LSOne(S) (S & (-S))
 
