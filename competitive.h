@@ -8,33 +8,39 @@ typedef vector<pii> vii;
 typedef map<int, int> mii;
 #define LSOne(S) (S & (-S))
 
-class FenwickTree {
-private:;
-  vi ft;
-
-public:
-  FenwickTree() {}
-  // initialization: n + 1 zeroes, ignore index 0
-  FenwickTree(int n) { ft.assign(n + 1, 0); }
-
-  int rsq(int b) {                                     // returns RSQ(1, b)
-    int sum = 0; for (; b; b -= LSOne(b)) sum += ft[b];
-    return sum; }
-
-  int rsq(int a, int b) {                              // returns RSQ(a, b)
-    return rsq(b) - (a == 1 ? 0 : rsq(a - 1)); }
-
-  // adjusts value of the k-th element by v (v can be +ve/inc or -ve/dec)
-  void adjust(int k, int v) {                    // note: n = ft.size() - 1
-    for (; k < (int)ft.size(); k += LSOne(k)) ft[k] += v; }
-};
-
-map<string, int> ss;
+map<string, int> stringIndex;
+//Starts from 0
 int dstoi(string s) {
-	if(ss.find(s) != ss.end()) {
-		return ss[s];
-	} else {
-		ss[s] = ss.size();
-		return ss[s];
-	}
+  if(stringIndex.find(s) != stringIndex.end()) {
+    return stringIndex[s];
+  } else {
+    stringIndex[s] = stringIndex.size();
+    return stringIndex[s];
+  }
+}
+
+vector<string> splitString(string s, string delimiter) {
+  size_t last = 0, next = 0;
+  string token;
+  vector<string> ret;
+  while((next = s.find(delimiter, last)) != string::npos) {
+    token = s.substr(last, next - last);
+    ret.push_back(token);
+    last = next + 1;
+  }
+  ret.push_back(s.substr(last));
+}
+
+int ctBits(size_t x) {
+  int ct = 0;
+  while(x) {
+    x -= (x & (-x));
+    ++ct;
+  }
+  return ct;
+}
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
 }
